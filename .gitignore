@@ -1,0 +1,20 @@
+# Datos personales, pedidos y clave del operador (Ley 1581): nunca al repositorio
+datos/
+
+# Fotos subidas desde el panel (se generan en el servidor); las de referencia sí van
+fotos/*
+!fotos/referencia/
+
+# Dependencias y registros
+node_modules/
+*.log
+npm-debug.log*
+
+# Configuración local del editor y de Claude Code (las skills se reinstalan con skills-lock.json)
+.vscode/
+.claude/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

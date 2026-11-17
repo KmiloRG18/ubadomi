@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="theme-color" content="#064e3b" />
+  <meta name="robots" content="noindex" />
+  <title>UbaDomi · Panel del operador</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23064e3b'/%3E%3Cpath d='M9 12h14l-1.5 12h-11z' fill='white'/%3E%3Cpath d='M12 12a4 4 0 0 1 8 0' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="operador.css" />
+</head>
+<body>
+
+  <!-- ============ LOGIN ============ -->
+  <main id="pantallaLogin" class="login-wrap d-none">
+    <form id="formLogin" class="login-card">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <span class="logo-ico"><i class="bi bi-headset"></i></span>
+        <div>
+          <h1 class="h5 fw-bold mb-0">UbaDomi · Operadores</h1>
+          <small class="text-muted">Gestión de pedidos por chat</small>
+        </div>
+      </div>
+      <label class="form-label small fw-bold" for="clave">Clave del operador</label>
+      <input id="clave" type="password" class="form-control mb-2" autocomplete="current-password" required />
+      <label class="form-label small fw-bold" for="nombreOperador">Tu nombre (lo ve el cliente)</label>
+      <input id="nombreOperador" class="form-control mb-3" maxlength="40" placeholder="Ej. Juan · UbaDomi" />
+      <button class="btn btn-verde w-100" type="submit">Ingresar</button>
+      <p id="errorLogin" class="text-danger small mt-2 mb-0"></p>
+      <p class="text-muted small mt-3 mb-0">La clave aparece en la consola al ejecutar <code>npm start</code> y se guarda en <code>datos/clave-operador.txt</code>.</p>
+    </form>
+  </main>
+
+  <!-- ============ PANEL ============ -->
+  <div id="pantallaPanel" class="panel d-none">
+    <header class="topbar">
+      <div class="d-flex align-items-center gap-2">
+        <span class="logo-ico sm"><i class="bi bi-headset"></i></span>
+        <strong>UbaDomi · Operadores</strong>
+        <span id="conexion" class="conexion off"><span class="punto"></span><span class="txt">Conectando…</span></span>
+        <nav class="tabs-op ms-3" role="tablist" aria-label="Secciones">
+          <button type="button" class="activo" data-tab="chats" role="tab"><i class="bi bi-chat-dots"></i><span class="d-none d-md-inline"> Chats</span></button>
+          <button type="button" data-tab="comercios" role="tab"><i class="bi bi-shop"></i><span class="d-none d-md-inline"> Comercios</span></button>
+          <button type="button" data-tab="resumen" role="tab"><i class="bi bi-bar-chart"></i><span class="d-none d-md-inline"> Resumen</span></button>
+        </nav>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span class="small opacity-75 d-none d-md-inline" id="quienSoy"></span>
+        <button id="btnSonido" class="btn btn-sm btn-outline-light" type="button" title="Sonido de mensajes nuevos"><i class="bi bi-volume-up-fill"></i></button>
+        <a class="btn btn-sm btn-outline-light" href="/" target="_blank" rel="noopener" title="Abrir la página del cliente"><i class="bi bi-box-arrow-up-right"></i></a>
+        <button id="btnSalir" class="btn btn-sm btn-light" type="button">Salir</button>
+      </div>
+    </header>
+
+    <!-- ============ PESTAÑA COMERCIOS ============ -->
+    <section id="tab-comercios" class="tab-op d-none">
+      <div class="com-layout">
+        <aside class="com-lista">
+          <div class="p-2 border-bottom d-flex gap-1">
+            <button type="button" class="btn btn-sm btn-verde flex-grow-1" id="btnNuevoComercio"><i class="bi bi-plus-lg"></i> Nuevo aliado</button>
+          </div>
+          <ul id="listaAliados" class="lista-conv"></ul>
+          <div class="p-2 border-top small">
+            <div id="estadoGuardado" class="text-muted mb-2"></div>
+            <button type="button" class="btn btn-sm btn-verde w-100 mb-1" id="btnGuardarComercios" disabled><i class="bi bi-cloud-arrow-up"></i> Publicar cambios</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary w-100" id="btnDescartarComercios" disabled>Descartar cambios</button>
+          </div>
+        </aside>
+        <div class="com-form">
+          <div id="comVacio" class="vacio-grande"><i class="bi bi-shop-window"></i><p class="fw-semibold mb-1">Elige un aliado o crea uno nuevo</p><p class="small text-muted">Los cambios se ven en la página al tocar «Publicar cambios».</p></div>
+          <form id="formAliado" class="d-none" novalidate>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold mb-0" id="tituloAliado"></h5>
+              <div class="d-flex gap-2 align-items-center">
+                <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" id="aActivo"><label class="form-check-label small" for="aActivo">Visible</label></div>
+                <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" id="aDemo"><label class="form-check-label small" for="aDemo">Demo</label></div>
+                <button type="button" class="btn btn-sm btn-outline-danger" id="btnEliminarAliado"><i class="bi bi-trash3"></i></button>
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-md-6"><label class="form-label small fw-bold mb-1" for="aNombre">Nombre</label><input id="aNombre" class="form-control form-control-sm" required maxlength="120"></div>
+              <div class="col-md-3"><label class="form-label small fw-bold mb-1" for="aCategoria">Categoría</label>
+                <select id="aCategoria" class="form-select form-select-sm">
+                  <option value="restaurante">Restaurante</option><option value="rapida">Comidas rápidas</option><option value="pizza">Pizza</option>
+                  <option value="pollo">Pollo y asados</option><option value="cafe">Café</option><option value="panaderia">Panadería</option>
+                  <option value="helados">Heladería</option><option value="tienda">Tienda / Minimercado</option>
+                </select></div>
+              <div class="col-md-3"><label class="form-label small fw-bold mb-1" for="aBarrio">Barrio</label><select id="aBarrio" class="form-select form-select-sm"></select></div>
+              <div class="col-md-6"><label class="form-label small fw-bold mb-1" for="aCocina">Tipo de comida</label><input id="aCocina" class="form-control form-control-sm" maxlength="120" placeholder="Corrientazos, pollo asado…"></div>
+              <div class="col-md-6"><label class="form-label small fw-bold mb-1" for="aTelefono">Teléfono / WhatsApp</label><input id="aTelefono" class="form-control form-control-sm" maxlength="40" placeholder="3001234567"></div>
+              <div class="col-12"><label class="form-label small fw-bold mb-1" for="aDescripcion">Descripción</label><input id="aDescripcion" class="form-control form-control-sm" maxlength="300"></div>
+              <div class="col-md-6"><label class="form-label small fw-bold mb-1" for="aDireccion">Dirección</label><input id="aDireccion" class="form-control form-control-sm" maxlength="160"></div>
+              <div class="col-md-6"><label class="form-label small fw-bold mb-1" for="aHorario">Horario</label><input id="aHorario" class="form-control form-control-sm" maxlength="120" placeholder="Lun a Dom 11:00 a.m. – 8:00 p.m."></div>
+              <div class="col-6 col-md-3"><label class="form-label small fw-bold mb-1" for="aTiempo">Tiempo entrega</label><input id="aTiempo" class="form-control form-control-sm" maxlength="30" placeholder="20-30 min"></div>
+              <div class="col-6 col-md-3"><label class="form-label small fw-bold mb-1" for="aEnvio">Domicilio ($)</label><input id="aEnvio" type="number" min="0" step="100" class="form-control form-control-sm"></div>
+              <div class="col-6 col-md-3"><label class="form-label small fw-bold mb-1" for="aIcono">Ícono</label><input id="aIcono" class="form-control form-control-sm" maxlength="8" placeholder="🍗"></div>
+              <div class="col-6 col-md-3"><label class="form-label small fw-bold mb-1" for="aColor">Color</label><input id="aColor" type="color" class="form-control form-control-sm form-control-color w-100"></div>
+              <div class="col-12">
+                <span class="form-label small fw-bold mb-1 d-block">Foto del negocio</span>
+                <div class="foto-editor">
+                  <div class="foto-prev" id="aFotoPrev"><i class="bi bi-image"></i><span>Sin foto: se muestra el color y el ícono</span></div>
+                  <div class="d-flex flex-column gap-1">
+                    <label class="btn btn-sm btn-outline-success mb-0"><i class="bi bi-upload"></i> Subir foto<input type="file" id="aFotoArchivo" accept="image/jpeg,image/png,image/webp" hidden></label>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="aFotoQuitar">Quitar</button>
+                    <span class="form-text m-0">Foto propia del negocio o que el dueño autorice. Se reduce a 1200 px antes de subir.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold mb-1" for="aCoords">Ubicación (lat, lng)</label>
+                <div class="input-group input-group-sm">
+                  <input id="aCoords" class="form-control" required placeholder="5.30812, -73.81534" pattern="\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*">
+                  <a class="btn btn-outline-secondary" id="aVerMapa" target="_blank" rel="noopener"><i class="bi bi-geo-alt"></i> Ver en Google Maps</a>
+                </div>
+                <div class="form-text">En Google Maps: clic derecho sobre el negocio → se copian las coordenadas → pégalas aquí.</div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+              <h6 class="fw-bold mb-0">Menú <span class="text-muted fw-normal small" id="cuentaProductos"></span></h6>
+              <button type="button" class="btn btn-sm btn-outline-success" id="btnAgregarProducto"><i class="bi bi-plus-lg"></i> Producto</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-sm align-middle tabla-menu">
+                <thead><tr><th style="width:64px">Foto</th><th style="width:56px">Ícono</th><th>Producto</th><th>Descripción</th><th style="width:110px">Precio</th><th style="width:70px" title="Disponible">Disp.</th><th style="width:40px"></th></tr></thead>
+                <tbody id="tablaProductos"></tbody>
+              </table>
+            </div>
+            <p id="errorAliado" class="text-danger small"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PESTAÑA RESUMEN ============ -->
+    <section id="tab-resumen" class="tab-op d-none">
+      <div class="container-fluid py-3" id="resumenCont"></div>
+    </section>
+
+    <div class="cols tab-op" id="tab-chats">
+      <!-- Lista de conversaciones -->
+      <aside class="col-lista">
+        <div class="p-2 border-bottom">
+          <input id="buscarConv" type="search" class="form-control form-control-sm mb-2" placeholder="Buscar cliente, celular o restaurante…" />
+          <div class="btn-group btn-group-sm w-100" role="group" aria-label="Filtro">
+            <input type="radio" class="btn-check" name="filtro" id="fTodos" value="todos" checked>
+            <label class="btn btn-outline-success" for="fTodos">Todos</label>
+            <input type="radio" class="btn-check" name="filtro" id="fNoLeidos" value="noleidos">
+            <label class="btn btn-outline-success" for="fNoLeidos">Sin leer</label>
+            <input type="radio" class="btn-check" name="filtro" id="fActivos" value="activos">
+            <label class="btn btn-outline-success" for="fActivos">Pedidos activos</label>
+          </div>
+        </div>
+        <ul id="listaConv" class="lista-conv"></ul>
+      </aside>
+
+      <!-- Chat -->
+      <section class="col-chat">
+        <div id="sinSeleccion" class="vacio-grande">
+          <i class="bi bi-chat-square-text"></i>
+          <p class="fw-semibold mb-1">Elige una conversación</p>
+          <p class="small text-muted">Aquí llegan los mensajes y pedidos de los clientes en tiempo real.</p>
+        </div>
+        <div id="chatOp" class="chat-op d-none">
+          <div class="chat-op-head">
+            <button type="button" class="btn btn-sm btn-outline-secondary d-md-none me-2" id="btnVolverLista" aria-label="Volver a la lista"><i class="bi bi-arrow-left"></i></button>
+            <div class="flex-grow-1">
+              <div class="fw-bold" id="chatNombreCliente"></div>
+              <small class="text-muted" id="chatSubCliente"></small>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary d-xl-none" id="btnVerDetalle"><i class="bi bi-layout-sidebar-reverse"></i> Detalle</button>
+          </div>
+          <div id="mensajesOp" class="mensajes-op"></div>
+          <div id="plantillas" class="plantillas"></div>
+          <form id="formMensajeOp" class="input-op">
+            <textarea id="textoOp" rows="2" maxlength="1500" placeholder="Escribe al cliente… (Enter envía, Shift+Enter nueva línea)"></textarea>
+            <button class="btn btn-verde" type="submit"><i class="bi bi-send-fill"></i></button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Detalle -->
+      <aside class="col-detalle" id="colDetalle">
+        <div class="d-xl-none d-flex justify-content-end p-2 border-bottom">
+          <button type="button" class="btn-close" id="btnCerrarDetalle" aria-label="Cerrar detalle"></button>
+        </div>
+        <div id="detalleVacio" class="p-4 text-muted small">Selecciona una conversación para ver al cliente, el restaurante y el pedido.</div>
+        <div id="detalle" class="d-none">
+
+          <section class="tarjeta">
+            <h6><i class="bi bi-person-fill"></i> Cliente</h6>
+            <div id="detCliente"></div>
+          </section>
+
+          <section class="tarjeta">
+            <h6><i class="bi bi-shop"></i> Restaurante</h6>
+            <div id="detComercio"></div>
+          </section>
+
+          <section class="tarjeta">
+            <div class="d-flex justify-content-between align-items-center">
+              <h6 class="mb-0"><i class="bi bi-receipt"></i> Pedido</h6>
+              <button type="button" class="btn btn-sm btn-outline-success" id="btnEditarPedido"></button>
+            </div>
+            <div id="detPedido" class="mt-2"></div>
+            <button type="button" class="btn btn-sm btn-outline-danger w-100 mt-2 d-none" id="btnCancelarPedidoOp"><i class="bi bi-x-circle"></i> Cancelar pedido</button>
+
+            <form id="formPedido" class="mt-2 d-none" novalidate>
+              <label class="form-label small fw-bold mb-1" for="pComercio">Restaurante</label>
+              <input id="pComercio" class="form-control form-control-sm mb-1" list="listaComercios" required placeholder="Nombre del restaurante" autocomplete="off" />
+              <datalist id="listaComercios"></datalist>
+              <input id="pComercioTel" class="form-control form-control-sm mb-2" placeholder="Teléfono del restaurante (opcional)" />
+              <label class="form-label small fw-bold mb-1" for="pItems">Productos <span class="fw-normal text-muted">(uno por línea: <code>2 x Hamburguesa = 19500</code>)</span></label>
+              <textarea id="pItems" class="form-control form-control-sm mb-2" rows="4" required></textarea>
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label small fw-bold mb-1" for="pSubtotal">Subtotal productos</label>
+                  <input id="pSubtotal" type="number" min="0" step="100" class="form-control form-control-sm" required />
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-bold mb-1" for="pEnvio">Domicilio</label>
+                  <input id="pEnvio" type="number" min="0" step="100" class="form-control form-control-sm" value="2000" required />
+                </div>
+              </div>
+              <div id="pDirWrap" class="mb-2 d-none">
+                <label class="form-label small fw-bold mb-1" for="pDireccion">Dirección de entrega <span class="fw-normal text-muted">(el cliente no la ha marcado)</span></label>
+                <div class="d-flex gap-1">
+                  <select id="pBarrio" class="form-select form-select-sm" style="max-width: 45%;" aria-label="Barrio"></select>
+                  <input id="pDireccion" class="form-control form-control-sm" maxlength="200" placeholder="Calle 10 # 5-18, casa azul" />
+                </div>
+              </div>
+              <input id="pNotas" class="form-control form-control-sm mb-2" maxlength="300" placeholder="Notas (sin cebolla, cambio de $50.000…)" />
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Total: <span id="pTotal">$0</span></strong>
+                <div class="d-flex gap-2">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="btnCancelarPedido">Cancelar</button>
+                  <button type="submit" class="btn btn-sm btn-verde" id="btnGuardarPedido">Guardar y avisar</button>
+                </div>
+              </div>
+              <p id="errorPedido" class="text-danger small mt-1 mb-0"></p>
+            </form>
+          </section>
+
+          <section class="tarjeta" id="secEstado">
+            <h6><i class="bi bi-signpost-split"></i> Estado del pedido</h6>
+            <div id="estadosOp" class="estados-op"></div>
+            <div id="camposDomiciliario" class="mt-2">
+              <label class="form-label small fw-bold mb-1">Domiciliario</label>
+              <div class="row g-1">
+                <div class="col-12"><input id="dNombre" class="form-control form-control-sm" placeholder="Nombre" maxlength="60" /></div>
+                <div class="col-7"><input id="dVehiculo" class="form-control form-control-sm" placeholder="Moto · placa" maxlength="80" /></div>
+                <div class="col-5"><input id="dTelefono" class="form-control form-control-sm" placeholder="Celular" maxlength="20" /></div>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-success mt-1 w-100" id="btnGuardarDom">Guardar domiciliario</button>
+            </div>
+          </section>
+
+          <section class="tarjeta">
+            <h6><i class="bi bi-journal-text"></i> Notas internas <small class="text-muted fw-normal">(el cliente no las ve)</small></h6>
+            <ul id="listaNotas" class="list-unstyled small mb-2"></ul>
+            <form id="formNota" class="d-flex gap-1">
+              <input id="textoNota" class="form-control form-control-sm" maxlength="1000" placeholder="Ej. El restaurante confirmó a las 7:10 p.m." />
+              <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="bi bi-plus-lg"></i></button>
+            </form>
+          </section>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastOp" class="toast text-bg-dark border-0" role="status" aria-live="polite">
+      <div class="d-flex"><div class="toast-body" id="toastOpTxt"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="config.js"></script>
+  <script src="restaurantes.js"></script>
+  <script src="operador.js"></script>
+</body>
+</html>

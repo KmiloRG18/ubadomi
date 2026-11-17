@@ -1,0 +1,192 @@
+{
+ "nota": "Imágenes de referencia de Wikimedia Commons con licencia libre. Reducidas y convertidas a WebP. No son fotos de los negocios de UbaDomi.",
+ "fotos": [
+  {
+   "archivo": "restaurante-1.webp",
+   "categoria": "restaurante",
+   "titulo": "File:Bandeja paisa, plato Colombiano.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Bandeja_paisa,_plato_Colombiano.jpg",
+   "autor": "Wilfredor",
+   "licencia": "CC0",
+   "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "ancho": 960,
+   "alto": 640
+  },
+  {
+   "archivo": "restaurante-2.webp",
+   "categoria": "restaurante",
+   "titulo": "File:Bandeja paisa del Chocolos 30062011.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Bandeja_paisa_del_Chocolos_30062011.jpg",
+   "autor": "Dtarazona",
+   "licencia": "CC BY-SA 3.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "ancho": 960,
+   "alto": 539
+  },
+  {
+   "archivo": "restaurante-3.webp",
+   "categoria": "restaurante",
+   "titulo": "File:Ajiaco-santafereño.JPG",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Ajiaco-santafere%C3%B1o.JPG",
+   "autor": "Jdvillalobos",
+   "licencia": "CC BY 4.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "rapida-1.webp",
+   "categoria": "rapida",
+   "titulo": "File:Hamburger with blue cheese, guacamole, and other toppings, plus French fries - Massachusetts.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Hamburger_with_blue_cheese,_guacamole,_and_other_toppings,_plus_French_fries_-_Massachusetts.jpg",
+   "autor": "Daderot",
+   "licencia": "CC0",
+   "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "ancho": 960,
+   "alto": 670
+  },
+  {
+   "archivo": "rapida-2.webp",
+   "categoria": "rapida",
+   "titulo": "File:Homemade hamburgers and french fries from Argentina.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Homemade_hamburgers_and_french_fries_from_Argentina.jpg",
+   "autor": "Horacio Cambeiro",
+   "licencia": "CC BY 4.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "pizza-1.webp",
+   "categoria": "pizza",
+   "titulo": "File:Margherita Originale.JPG",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Margherita_Originale.JPG",
+   "autor": "Mario56",
+   "licencia": "CC BY-SA 3.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "pizza-2.webp",
+   "categoria": "pizza",
+   "titulo": "File:Pizza Margherita ピザ・マルゲリータ.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Pizza_Margherita_%E3%83%94%E3%82%B6%E3%83%BB%E3%83%9E%E3%83%AB%E3%82%B2%E3%83%AA%E3%83%BC%E3%82%BF.jpg",
+   "autor": "ノボホショコロトソ",
+   "licencia": "CC BY 4.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "pollo-1.webp",
+   "categoria": "pollo",
+   "titulo": "File:Pollo a la brasa pierna con papas.JPG",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Pollo_a_la_brasa_pierna_con_papas.JPG",
+   "autor": "Dtarazona",
+   "licencia": "Public domain",
+   "licenciaUrl": "",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "pollo-2.webp",
+   "categoria": "pollo",
+   "titulo": "File:Un cuarto de Pollo a la Brasa (pecho).JPG",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Un_cuarto_de_Pollo_a_la_Brasa_(pecho).JPG",
+   "autor": "Dtarazona",
+   "licencia": "CC BY-SA 3.0",
+   "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "panaderia-1.webp",
+   "categoria": "panaderia",
+   "titulo": "File:Almojábanas para comerse los dedos en un descuido - panoramio.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Almoj%C3%A1banas_para_comerse_los_dedos_en_un_descuido_-_panoramio.jpg",
+   "autor": "DnTrotaMundos ☮",
+   "licencia": "CC BY 3.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+   "ancho": 960,
+   "alto": 773
+  },
+  {
+   "archivo": "panaderia-2.webp",
+   "categoria": "panaderia",
+   "titulo": "File:Chocolate Especial.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Chocolate_Especial.jpg",
+   "autor": "Peter Angritt",
+   "licencia": "CC BY-SA 3.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "ancho": 960,
+   "alto": 626
+  },
+  {
+   "archivo": "panaderia-3.webp",
+   "categoria": "panaderia",
+   "titulo": "File:Pandeyuca, Pandebono y Almojábana. Colombia.JPG",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Pandeyuca,_Pandebono_y_Almoj%C3%A1bana._Colombia.JPG",
+   "autor": "Hoako",
+   "licencia": "CC BY-SA 3.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "helados-1.webp",
+   "categoria": "helados",
+   "titulo": "File:Ice cream with garnish.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Ice_cream_with_garnish.jpg",
+   "autor": "Izak.50",
+   "licencia": "CC BY 4.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+   "ancho": 960,
+   "alto": 640
+  },
+  {
+   "archivo": "helados-2.webp",
+   "categoria": "helados",
+   "titulo": "File:Mysore Special Fruit Salad With Ice Cream.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Mysore_Special_Fruit_Salad_With_Ice_Cream.jpg",
+   "autor": "Manjeshwari poet mysore",
+   "licencia": "CC BY-SA 4.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "ancho": 960,
+   "alto": 720
+  },
+  {
+   "archivo": "tienda-1.webp",
+   "categoria": "tienda",
+   "titulo": "File:At the Fruit and Vegetable Market (10522428663).jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:At_the_Fruit_and_Vegetable_Market_(10522428663).jpg",
+   "autor": "John Hoey from Framingham, MA, United States",
+   "licencia": "CC BY 2.0",
+   "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+   "ancho": 960,
+   "alto": 640
+  },
+  {
+   "archivo": "cafe-1.webp",
+   "categoria": "cafe",
+   "titulo": "File:Latte art 3.jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Latte_art_3.jpg",
+   "autor": "Kim Sanso",
+   "licencia": "CC0",
+   "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "ancho": 960,
+   "alto": 639
+  },
+  {
+   "archivo": "cafe-2.webp",
+   "categoria": "cafe",
+   "titulo": "File:Karl chor 2015-03-13 (Unsplash).jpg",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Karl_chor_2015-03-13_(Unsplash).jpg",
+   "autor": "karl chor karlchor",
+   "licencia": "CC0",
+   "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "ancho": 960,
+   "alto": 636
+  }
+ ]
+}

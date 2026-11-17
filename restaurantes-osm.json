@@ -1,0 +1,115 @@
+{
+ "actualizado": "14 de noviembre de 2026",
+ "fuente": "© colaboradores de OpenStreetMap (ODbL)",
+ "elements": [
+  {
+   "type": "node",
+   "id": 4366681492,
+   "lat": 5.3185008,
+   "lon": -73.8072342,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "local",
+    "internet_access": "wlan",
+    "name": "La Estación de San Antonio"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4519235789,
+   "lat": 5.3099894,
+   "lon": -73.8245837,
+   "tags": {
+    "addr:street": "km 1,5 ubate carmen de carupa",
+    "amenity": "restaurant",
+    "name": "Bonsuka",
+    "name:es": "Bonsuka",
+    "phone": "+57 318 8029420"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4827473422,
+   "lat": 5.3162663,
+   "lon": -73.801526,
+   "tags": {
+    "name": "Doña leche",
+    "name:es": "Doña leche",
+    "shop": "bakery"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5515370299,
+   "lat": 5.3076737,
+   "lon": -73.8146393,
+   "tags": {
+    "amenity": "ice_cream",
+    "name": "Coniobleas Florideñas"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5515370300,
+   "lat": 5.3074611,
+   "lon": -73.8148745,
+   "tags": {
+    "name": "Méga Pan",
+    "shop": "bakery"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5515377073,
+   "lat": 5.3107866,
+   "lon": -73.8117102,
+   "tags": {
+    "name": "La mejor",
+    "shop": "bakery"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5819516601,
+   "lat": 5.3069833,
+   "lon": -73.8143465,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "La Cantina"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5819516602,
+   "lat": 5.3069833,
+   "lon": -73.8138503,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "El Mesón del Indio"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8208058017,
+   "lat": 5.3070587,
+   "lon": -73.8138202,
+   "tags": {
+    "name": "la",
+    "name:en": "la marsella",
+    "name:es": "panaderia la marsella",
+    "opening_hours": "Mo-Su 06:30-21:00",
+    "shop": "bakery"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13550941396,
+   "lat": 5.307324,
+   "lon": -73.8137235,
+   "tags": {
+    "name": "Andi Pan",
+    "shop": "bakery"
+   }
+  }
+ ]
+}

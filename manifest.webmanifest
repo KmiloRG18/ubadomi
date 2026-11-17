@@ -1,0 +1,15 @@
+{
+  "name": "UbaDomi · Domicilios en Ubaté",
+  "short_name": "UbaDomi",
+  "description": "Pide a cualquier restaurante de Ubaté y sigue tu domicilio en el mapa.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
